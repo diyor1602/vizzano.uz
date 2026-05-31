@@ -1,27 +1,1831 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Vizzano — Premium Garment Manufacturing | Uzbekistan</title>
+    <meta
+      name="description"
+      content="Vizzano.uz — Uzbek premium garment manufacturer. Suits, winter clothing, B2B partnerships. 3 factories, 700+ staff, guaranteed worldwide delivery."
+    />
+    <meta
+      name="keywords"
+      content="Vizzano, garment manufacturer, Uzbekistan, suits, winter clothing, B2B, global market, kiyim ishlab chiqarish, производство одежды"
+    />
+    <meta
+      property="og:title"
+      content="Vizzano — Premium Garment Manufacturing"
+    />
+    <meta
+      property="og:description"
+      content="Premium suits and winter clothing from Uzbekistan. Own logistics, full legal support, guaranteed cost reduction."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://vizzano.uz" />
+    <link rel="canonical" href="https://vizzano.uz" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
     <style>
-      body {
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
         margin: 0;
         padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        background-color: #000;
       }
-      img {
-        max-width: 100%;
-        height: auto;
+      :root {
+        --black: #090909;
+        --charcoal: #141414;
+        --dark: #1c1c1c;
+        --card: #232323;
+        --border: #2a2a2a;
+        --muted: #555;
+        --silver: #888;
+        --light: #bbb;
+        --ivory: #f2ede4;
+        --white: #fafafa;
+        --gold: #c8943a;
+        --gold-lt: rgba(200, 148, 58, 0.12);
+        --gold-bd: rgba(200, 148, 58, 0.28);
+        --serif: "Cormorant Garamond", Georgia, serif;
+        --sans: "Inter", system-ui, sans-serif;
+        --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background: var(--black);
+        color: var(--ivory);
+        font-family: var(--sans);
+        font-weight: 300;
+        line-height: 1.7;
+        overflow-x: hidden;
+      }
+      ::-webkit-scrollbar {
+        width: 3px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--black);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--gold);
+        border-radius: 2px;
+      }
+
+      /* ── NAV ── */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 900;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.25rem 3rem;
+        transition:
+          background 0.4s var(--ease),
+          backdrop-filter 0.4s;
+      }
+      nav.scrolled {
+        background: rgba(9, 9, 9, 0.93);
+        backdrop-filter: blur(18px);
+        border-bottom: 1px solid var(--border);
+      }
+      .nav-logo {
+        font-family: var(--serif);
+        font-size: 1.55rem;
+        font-weight: 600;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--ivory);
+        text-decoration: none;
+        cursor: pointer;
+        flex-shrink: 0;
+      }
+      .nav-logo span {
+        color: var(--gold);
+      }
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 2.25rem;
+        list-style: none;
+      }
+      .nav-links a {
+        font-size: 0.72rem;
+        font-weight: 500;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--light);
+        text-decoration: none;
+        transition: color 0.3s;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+      .nav-links a:hover {
+        color: var(--gold);
+      }
+      .lang-toggle {
+        display: flex;
+        gap: 0.25rem;
+        align-items: center;
+        margin-left: 0.75rem;
+        border-left: 1px solid var(--border);
+        padding-left: 0.75rem;
+      }
+      .lang-btn {
+        font-family: var(--sans);
+        font-size: 0.68rem;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--silver);
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0.25rem 0.45rem;
+        border-radius: 2px;
+        transition: all 0.25s;
+      }
+      .lang-btn.active {
+        color: var(--gold);
+        background: var(--gold-lt);
+      }
+      .lang-btn:hover:not(.active) {
+        color: var(--light);
+      }
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 4px;
+      }
+      .hamburger span {
         display: block;
+        width: 22px;
+        height: 1.5px;
+        background: var(--ivory);
+        transition: all 0.3s var(--ease);
+      }
+      .mob-menu {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(9, 9, 9, 0.97);
+        backdrop-filter: blur(20px);
+        z-index: 800;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2.25rem;
+      }
+      .mob-menu.open {
+        display: flex;
+      }
+      .mob-menu a {
+        font-family: var(--serif);
+        font-size: 2rem;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        color: var(--ivory);
+        text-decoration: none;
+        cursor: pointer;
+        transition: color 0.3s;
+      }
+      .mob-menu a:hover {
+        color: var(--gold);
+      }
+      .mob-close {
+        position: absolute;
+        top: 1.5rem;
+        right: 2rem;
+        font-size: 1.4rem;
+        color: var(--ivory);
+        background: none;
+        border: none;
+        cursor: pointer;
+        line-height: 1;
+      }
+      .mob-lang {
+        display: flex;
+        gap: 0.75rem;
+        margin-top: 0.5rem;
+      }
+
+      /* ── HERO ── */
+      #hero {
+        position: relative;
+        height: 100vh;
+        min-height: 580px;
+        display: flex;
+        align-items: flex-end;
+        overflow: hidden;
+      }
+      .hero-vid {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 0;
+      }
+      .hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba(9, 9, 9, 0.92) 0%,
+          rgba(9, 9, 9, 0.38) 55%,
+          rgba(9, 9, 9, 0.18) 100%
+        );
+        z-index: 1;
+      }
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        padding: 0 3rem 5rem;
+        max-width: 860px;
+      }
+      .hero-tag {
+        display: inline-block;
+        font-size: 0.64rem;
+        font-weight: 500;
+        letter-spacing: 0.34em;
+        text-transform: uppercase;
+        color: var(--gold);
+        border: 1px solid var(--gold-bd);
+        padding: 0.38rem 0.9rem;
+        margin-bottom: 1.6rem;
+      }
+      .hero-h1 {
+        font-family: var(--serif);
+        font-size: clamp(2.6rem, 7vw, 5.8rem);
+        font-weight: 300;
+        line-height: 1.05;
+        color: var(--ivory);
+        margin-bottom: 1.4rem;
+        letter-spacing: -0.01em;
+      }
+      .hero-h1 em {
+        font-style: italic;
+        color: var(--gold);
+      }
+      .hero-sub {
+        font-size: 0.94rem;
+        font-weight: 300;
+        color: var(--light);
+        max-width: 520px;
+        line-height: 1.82;
+        margin-bottom: 2.4rem;
+      }
+      .hero-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.7rem;
+        font-size: 0.73rem;
+        font-weight: 500;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--black);
+        background: var(--gold);
+        padding: 0.85rem 2rem;
+        text-decoration: none;
+        cursor: pointer;
+        border: none;
+        transition: all 0.3s var(--ease);
+      }
+      .hero-cta:hover {
+        background: var(--ivory);
+        transform: translateY(-2px);
+      }
+      .hero-cta .arr {
+        transition: transform 0.3s;
+      }
+      .hero-cta:hover .arr {
+        transform: translateX(4px);
+      }
+      .mute-btn {
+        position: absolute;
+        bottom: 2.5rem;
+        right: 3rem;
+        z-index: 3;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        backdrop-filter: blur(8px);
+        color: var(--ivory);
+        font-family: var(--sans);
+        font-size: 0.68rem;
+        font-weight: 500;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        padding: 0.55rem 0.95rem;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+      .mute-btn:hover {
+        background: rgba(255, 255, 255, 0.14);
+        border-color: rgba(255, 255, 255, 0.28);
+      }
+
+      /* ── SHARED ── */
+      .sec-label {
+        font-size: 0.63rem;
+        font-weight: 500;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 0.9rem;
+      }
+      .sec-title {
+        font-family: var(--serif);
+        font-size: clamp(1.9rem, 4.5vw, 3.2rem);
+        font-weight: 500;
+        line-height: 1.15;
+        color: var(--ivory);
+        margin-bottom: 1.4rem;
+      }
+      .sec-title em {
+        font-style: italic;
+        color: var(--gold);
+      }
+      .sec-body {
+        font-size: 0.93rem;
+        font-weight: 300;
+        line-height: 1.88;
+        color: var(--silver);
+        max-width: 600px;
+      }
+      .divider {
+        width: 44px;
+        height: 1px;
+        background: var(--gold);
+        margin: 1.5rem 0;
+      }
+      .fade-up {
+        opacity: 0;
+        transform: translateY(28px);
+        transition:
+          opacity 0.8s var(--ease),
+          transform 0.8s var(--ease);
+      }
+      .fade-up.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .d1 {
+        transition-delay: 0.1s;
+      }
+      .d2 {
+        transition-delay: 0.2s;
+      }
+      .d3 {
+        transition-delay: 0.3s;
+      }
+      .d4 {
+        transition-delay: 0.4s;
+      }
+      .d5 {
+        transition-delay: 0.5s;
+      }
+
+      /* ── ABOUT ── */
+      #about {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5rem;
+        align-items: center;
+        max-width: 1380px;
+        margin: 0 auto;
+        padding: 9rem 3rem;
+      }
+      .stats-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.25rem;
+        margin-top: 2.75rem;
+      }
+      .stat-card {
+        border: 1px solid var(--border);
+        padding: 1.4rem 1.5rem;
+        position: relative;
+        overflow: hidden;
+        transition: border-color 0.3s;
+      }
+      .stat-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 2px;
+        height: 100%;
+        background: var(--gold);
+        transform: scaleY(0);
+        transform-origin: top;
+        transition: transform 0.4s var(--ease);
+      }
+      .stat-card:hover::before {
+        transform: scaleY(1);
+      }
+      .stat-card:hover {
+        border-color: var(--gold-bd);
+      }
+      .stat-num {
+        font-family: var(--serif);
+        font-size: 2.4rem;
+        font-weight: 500;
+        color: var(--gold);
+        line-height: 1;
+        margin-bottom: 0.4rem;
+      }
+      .stat-lbl {
+        font-size: 0.72rem;
+        font-weight: 400;
+        letter-spacing: 0.1em;
+        color: var(--silver);
+        text-transform: uppercase;
+      }
+      .img-stack {
+        position: relative;
+        height: 580px;
+      }
+      .img-main {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 85%;
+        height: 460px;
+        object-fit: cover;
+      }
+      .img-accent {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 54%;
+        height: 280px;
+        object-fit: cover;
+        border: 4px solid var(--black);
+      }
+      .img-quote {
+        position: absolute;
+        bottom: 1.75rem;
+        right: -1rem;
+        background: var(--gold);
+        color: var(--black);
+        padding: 1.2rem 1.4rem;
+        max-width: 195px;
+        font-family: var(--serif);
+        font-size: 0.88rem;
+        font-weight: 500;
+        font-style: italic;
+        line-height: 1.45;
+        z-index: 2;
+      }
+
+      /* ── WHY ── */
+      #why {
+        background: var(--charcoal);
+        padding: 9rem 3rem;
+      }
+      .why-inner {
+        max-width: 1380px;
+        margin: 0 auto;
+      }
+      .why-hdr {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: end;
+        margin-bottom: 4.5rem;
+      }
+      .why-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+        background: var(--border);
+      }
+      .why-card {
+        background: var(--charcoal);
+        padding: 2.4rem;
+        transition: background 0.3s;
+        position: relative;
+        overflow: hidden;
+      }
+      .why-card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          var(--gold-lt) 0%,
+          transparent 100%
+        );
+        opacity: 0;
+        transition: opacity 0.4s;
+      }
+      .why-card:hover {
+        background: var(--dark);
+      }
+      .why-card:hover::after {
+        opacity: 1;
+      }
+      .why-num {
+        font-family: var(--serif);
+        font-size: 3.2rem;
+        font-weight: 300;
+        color: var(--border);
+        line-height: 1;
+        margin-bottom: 0.7rem;
+        transition: color 0.3s;
+      }
+      .why-card:hover .why-num {
+        color: #2e2e2e;
+      }
+      .why-card-h {
+        font-family: var(--serif);
+        font-size: 1.3rem;
+        font-weight: 500;
+        color: var(--ivory);
+        margin-bottom: 0.7rem;
+        line-height: 1.3;
+      }
+      .why-card-p {
+        font-size: 0.84rem;
+        font-weight: 300;
+        color: var(--silver);
+        line-height: 1.78;
+      }
+
+      /* ── COLLECTIONS ── */
+      #collections {
+        max-width: 1380px;
+        margin: 0 auto;
+        padding: 9rem 3rem;
+      }
+      .coll-hdr {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: end;
+        margin-bottom: 3.75rem;
+      }
+      .car-wrap {
+        position: relative;
+        overflow: hidden;
+      }
+      .car-track {
+        display: flex;
+        transition: transform 0.7s var(--ease);
+      }
+      .car-slide {
+        flex: 0 0 100%;
+        position: relative;
+        height: 580px;
+        cursor: pointer;
+      }
+      .car-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .slide-cap {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 2rem;
+        background: linear-gradient(
+          to top,
+          rgba(9, 9, 9, 0.88) 0%,
+          transparent 100%
+        );
+      }
+      .slide-cap-h {
+        font-family: var(--serif);
+        font-size: 1.45rem;
+        font-weight: 500;
+        color: var(--ivory);
+      }
+      .slide-cap-s {
+        font-size: 0.78rem;
+        color: var(--silver);
+        letter-spacing: 0.1em;
+        margin-top: 0.2rem;
+      }
+      .car-ctrl {
+        display: flex;
+        align-items: center;
+        gap: 0.9rem;
+        margin-top: 1.4rem;
+      }
+      .car-btn {
+        width: 46px;
+        height: 46px;
+        border: 1px solid var(--border);
+        background: none;
+        color: var(--ivory);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s;
+        flex-shrink: 0;
+      }
+      .car-btn:hover {
+        border-color: var(--gold);
+        background: var(--gold-lt);
+        color: var(--gold);
+      }
+      .car-dots {
+        display: flex;
+        gap: 0.45rem;
+        margin-left: auto;
+      }
+      .dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--border);
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+      .dot.active {
+        background: var(--gold);
+        width: 22px;
+        border-radius: 3px;
+      }
+
+      /* ── LIGHTBOX ── */
+      .lbox {
+        position: fixed;
+        inset: 0;
+        background: rgba(9, 9, 9, 0.96);
+        z-index: 2000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s;
+      }
+      .lbox.open {
+        opacity: 1;
+        pointer-events: all;
+      }
+      .lbox img {
+        max-width: 90vw;
+        max-height: 85vh;
+        object-fit: contain;
+      }
+      .lbox-close {
+        position: absolute;
+        top: 1.75rem;
+        right: 2rem;
+        background: none;
+        border: none;
+        color: var(--ivory);
+        font-size: 1.6rem;
+        cursor: pointer;
+        line-height: 1;
+        transition: color 0.3s;
+      }
+      .lbox-close:hover {
+        color: var(--gold);
+      }
+
+      /* ── CONTACT ── */
+      #contact {
+        background: var(--charcoal);
+        padding: 9rem 3rem;
+      }
+      .contact-inner {
+        max-width: 1380px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1.35fr;
+        gap: 6rem;
+        align-items: start;
+      }
+      .c-detail {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.9rem;
+        padding: 1.2rem 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .c-detail:last-of-type {
+        border-bottom: none;
+      }
+      .c-ico {
+        width: 15px;
+        margin-top: 3px;
+        color: var(--gold);
+        flex-shrink: 0;
+      }
+      .c-lbl {
+        font-size: 0.63rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 0.22rem;
+      }
+      .c-val {
+        font-size: 0.9rem;
+        color: var(--light);
+        line-height: 1.6;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+      }
+      .f-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.2rem;
+      }
+      .f-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.45rem;
+      }
+      label {
+        font-size: 0.68rem;
+        font-weight: 500;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--silver);
+      }
+      input,
+      textarea {
+        background: var(--dark);
+        border: 1px solid var(--border);
+        color: var(--ivory);
+        font-family: var(--sans);
+        font-size: 0.9rem;
+        font-weight: 300;
+        padding: 0.85rem 1rem;
+        outline: none;
+        transition: border-color 0.3s;
+        resize: vertical;
+        width: 100%;
+      }
+      input::placeholder,
+      textarea::placeholder {
+        color: var(--muted);
+      }
+      input:focus,
+      textarea:focus {
+        border-color: var(--gold);
+      }
+      textarea {
+        min-height: 115px;
+      }
+      .sub-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.7rem;
+        font-family: var(--sans);
+        font-size: 0.72rem;
+        font-weight: 500;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--black);
+        background: var(--gold);
+        border: none;
+        padding: 0.9rem 2.4rem;
+        cursor: pointer;
+        transition: all 0.3s var(--ease);
+        align-self: flex-start;
+      }
+      .sub-btn:hover {
+        background: var(--ivory);
+        transform: translateY(-2px);
+      }
+
+      /* ── FIND US ── */
+      #findus {
+        max-width: 1380px;
+        margin: 0 auto;
+        padding: 9rem 3rem;
+      }
+      .map-wrap {
+        margin-top: 2.75rem;
+      }
+      .map-wrap iframe {
+        width: 100%;
+        height: 440px;
+        border: 1px solid var(--border);
+        filter: grayscale(100%) invert(90%) contrast(85%) brightness(0.95);
+      }
+
+      /* ── FOOTER ── */
+      footer {
+        background: var(--charcoal);
+        border-top: 1px solid var(--border);
+        padding: 2.75rem 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .f-logo {
+        font-family: var(--serif);
+        font-size: 1.2rem;
+        font-weight: 600;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--ivory);
+      }
+      .f-logo span {
+        color: var(--gold);
+      }
+      .f-copy {
+        font-size: 0.72rem;
+        color: var(--muted);
+      }
+
+      /* ── RESPONSIVE ── */
+      @media (max-width: 1024px) {
+        nav {
+          padding: 1.1rem 2rem;
+        }
+        .nav-links {
+          display: none;
+        }
+        .hamburger {
+          display: flex;
+        }
+        #about {
+          grid-template-columns: 1fr;
+          padding: 6rem 2rem;
+          gap: 3rem;
+        }
+        .img-stack {
+          height: 400px;
+        }
+        .img-main {
+          height: 330px;
+        }
+        .img-accent {
+          height: 200px;
+        }
+        .why-hdr {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+        .why-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .coll-hdr {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+        .contact-inner {
+          grid-template-columns: 1fr;
+          gap: 3.5rem;
+        }
+        #why,
+        #contact {
+          padding: 6rem 2rem;
+        }
+        #collections,
+        #findus {
+          padding: 6rem 2rem;
+        }
+      }
+      @media (max-width: 768px) {
+        nav {
+          padding: 1rem 1.5rem;
+        }
+        .hero-content {
+          padding: 0 1.5rem 4rem;
+        }
+        .hero-h1 {
+          font-size: clamp(2.2rem, 9vw, 3.5rem);
+        }
+        .why-grid {
+          grid-template-columns: 1fr;
+        }
+        .f-row {
+          grid-template-columns: 1fr;
+        }
+        .car-slide {
+          height: 360px;
+        }
+        .stats-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        footer {
+          flex-direction: column;
+          gap: 0.75rem;
+          text-align: center;
+          padding: 2rem 1.5rem;
+        }
+        .img-quote {
+          display: none;
+        }
+      }
+      @media (max-width: 480px) {
+        .img-accent {
+          display: none;
+        }
+        .img-main {
+          width: 100%;
+          height: 100%;
+        }
       }
     </style>
   </head>
   <body>
-    <img src="./bg.jpg" alt="vizzano" />
+    <!-- NAV -->
+    <nav id="nav">
+      <span class="nav-logo" onclick="goTo('hero')">VIZ<span>ZANO</span></span>
+      <ul class="nav-links">
+        <li><a onclick="goTo('about')" data-i18n="nav.about">About</a></li>
+        <li><a onclick="goTo('why')" data-i18n="nav.why">Why Us</a></li>
+        <li>
+          <a onclick="goTo('collections')" data-i18n="nav.coll">Collections</a>
+        </li>
+        <li>
+          <a onclick="goTo('contact')" data-i18n="nav.contact">Contact</a>
+        </li>
+        <li><a onclick="goTo('findus')" data-i18n="nav.findus">Find Us</a></li>
+        <div class="lang-toggle">
+          <button class="lang-btn" onclick="setLang('en')" id="ln-en">
+            EN
+          </button>
+          <button class="lang-btn" onclick="setLang('ru')" id="ln-ru">
+            RU
+          </button>
+          <button class="lang-btn" onclick="setLang('uz')" id="ln-uz">
+            UZ
+          </button>
+        </div>
+      </ul>
+      <button class="hamburger" onclick="toggleMob()">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mob-menu" id="mobMenu">
+      <button class="mob-close" onclick="toggleMob()">✕</button>
+      <a
+        onclick="
+          goTo('about');
+          toggleMob();
+        "
+        data-i18n="nav.about"
+        >About</a
+      >
+      <a
+        onclick="
+          goTo('why');
+          toggleMob();
+        "
+        data-i18n="nav.why"
+        >Why Us</a
+      >
+      <a
+        onclick="
+          goTo('collections');
+          toggleMob();
+        "
+        data-i18n="nav.coll"
+        >Collections</a
+      >
+      <a
+        onclick="
+          goTo('contact');
+          toggleMob();
+        "
+        data-i18n="nav.contact"
+        >Contact</a
+      >
+      <a
+        onclick="
+          goTo('findus');
+          toggleMob();
+        "
+        data-i18n="nav.findus"
+        >Find Us</a
+      >
+      <div class="mob-lang lang-toggle">
+        <button class="lang-btn" onclick="setLang('en')" id="ml-en">EN</button>
+        <button class="lang-btn" onclick="setLang('ru')" id="ml-ru">RU</button>
+        <button class="lang-btn" onclick="setLang('uz')" id="ml-uz">UZ</button>
+      </div>
+    </div>
+
+    <!-- HERO -->
+    <section id="hero">
+      <video class="hero-vid" id="heroVid" autoplay muted loop playsinline>
+        <source
+          src="https://ik.imagekit.io/19lcjq6zw/video.mov"
+          type="video/mp4"
+        />
+      </video>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <div class="hero-tag fade-up" data-i18n="hero.tag">
+          Uzbekistan · Premium Garment Manufacturing
+        </div>
+        <h1 class="hero-h1 fade-up d1" data-i18n-html="hero.h1">
+          Where <em>Craftsmanship</em><br />Meets Partnership
+        </h1>
+        <p class="hero-sub fade-up d2" data-i18n="hero.sub">
+          Premium suits and winter clothing from Uzbekistan. Built for the
+          world. Backed by 15 years of experience.
+        </p>
+        <button class="hero-cta fade-up d3" onclick="goTo('contact')">
+          <span data-i18n="hero.cta">Explore Partnership</span>
+          <span class="arr">→</span>
+        </button>
+      </div>
+      <button class="mute-btn" id="muteBtn" onclick="toggleMute()">
+        <svg
+          id="ico-sound"
+          width="13"
+          height="13"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+          <path
+            d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"
+          />
+        </svg>
+        <svg
+          id="ico-mute"
+          width="13"
+          height="13"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          style="display: none"
+        >
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+          <line x1="23" y1="9" x2="17" y2="15" />
+          <line x1="17" y1="9" x2="23" y2="15" />
+        </svg>
+        <span id="mute-lbl" data-i18n="hero.mute">Sound Off</span>
+      </button>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="about-text">
+        <div class="sec-label fade-up" data-i18n="about.lbl">Our Story</div>
+        <h2 class="sec-title fade-up d1" data-i18n-html="about.h2">
+          <em>Crafted</em> in Uzbekistan,<br />Built for the World
+        </h2>
+        <div class="divider fade-up d1"></div>
+        <p class="sec-body fade-up d2" data-i18n="about.body">
+          Vizzano is a premium Uzbek garment manufacturer with over 10 years of
+          import experience and 5 years of export operations. From 3 owned
+          factories in Namangan, our 700+ skilled professionals craft premium
+          suits and winter clothing for the global market. We don't just
+          manufacture — we build lasting partnerships. Every client is treated
+          as a partner: when you profit, we profit.
+        </p>
+        <div class="stats-grid">
+          <div class="stat-card fade-up d1">
+            <div class="stat-num">10+</div>
+            <div class="stat-lbl" data-i18n="stat.imp">Years Import Exp.</div>
+          </div>
+          <div class="stat-card fade-up d2">
+            <div class="stat-num">5+</div>
+            <div class="stat-lbl" data-i18n="stat.exp">Years Export Exp.</div>
+          </div>
+          <div class="stat-card fade-up d3">
+            <div class="stat-num">3</div>
+            <div class="stat-lbl" data-i18n="stat.fac">Owned Factories</div>
+          </div>
+          <div class="stat-card fade-up d4">
+            <div class="stat-num">700+</div>
+            <div class="stat-lbl" data-i18n="stat.stf">Skilled Staff</div>
+          </div>
+        </div>
+      </div>
+      <div class="fade-up d2">
+        <div class="img-stack">
+          <img
+            class="img-main"
+            src="assets/1.jpg"
+            alt="Vizzano manufacturing facility"
+          />
+          <img
+            class="img-accent"
+            src="assets/2.jpg"
+            alt="Vizzano craftsmanship"
+          />
+          <div class="img-quote" data-i18n="about.quote">
+            "We treat every client as a partner — if you profit, we profit."
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY US -->
+    <section id="why">
+      <div class="why-inner">
+        <div class="why-hdr">
+          <div class="fade-up">
+            <div class="sec-label" data-i18n="why.lbl">Why Partner With Us</div>
+            <h2 class="sec-title" data-i18n-html="why.h2">
+              The Vizzano<br /><em>Advantage</em>
+            </h2>
+          </div>
+          <p class="sec-body fade-up d1" data-i18n="why.intro">
+            We bring 15 years of combined trade experience, proprietary
+            logistics, and deep market knowledge to every partnership. We are
+            not a supplier — we are your strategic ally in global markets.
+          </p>
+        </div>
+        <div class="why-grid">
+          <div class="why-card fade-up">
+            <div class="why-num">01</div>
+            <h3 class="why-card-h" data-i18n="w1.h">
+              Cost Reduction Guarantee
+            </h3>
+            <p class="why-card-p" data-i18n="w1.p">
+              We guarantee a reduction in your cost price by at least $3 (300
+              RUB) per unit. A concrete, measurable advantage for any market.
+            </p>
+          </div>
+          <div class="why-card fade-up d1">
+            <div class="why-num">02</div>
+            <h3 class="why-card-h" data-i18n="w2.h">Own Logistics Network</h3>
+            <p class="why-card-p" data-i18n="w2.p">
+              Guaranteed timely delivery worldwide. Our own logistics service
+              means no intermediaries, no delays, full transparency.
+            </p>
+          </div>
+          <div class="why-card fade-up d2">
+            <div class="why-num">03</div>
+            <h3 class="why-card-h" data-i18n="w3.h">Full Legal Support</h3>
+            <p class="why-card-p" data-i18n="w3.p">
+              We handle all legal matters on your behalf. Customs,
+              documentation, compliance — fully managed by our in-house legal
+              team so you focus on business.
+            </p>
+          </div>
+          <div class="why-card fade-up d3">
+            <div class="why-num">04</div>
+            <h3 class="why-card-h" data-i18n="w4.h">Global Market Focus</h3>
+            <p class="why-card-p" data-i18n="w4.p">
+              The global market is our playground. 10 years of import, 5 years
+              of export — we know the markets, the regulations, and the buyers
+              worldwide.
+            </p>
+          </div>
+          <div class="why-card fade-up d4">
+            <div class="why-num">05</div>
+            <h3 class="why-card-h" data-i18n="w5.h">Deadline Discipline</h3>
+            <p class="why-card-p" data-i18n="w5.p">
+              Strictly committed to every deadline. In fashion, timing is
+              revenue — and we treat your sales calendar as our own
+              responsibility.
+            </p>
+          </div>
+          <div class="why-card fade-up d5">
+            <div class="why-num">06</div>
+            <h3 class="why-card-h" data-i18n="w6.h">Open to All Cooperation</h3>
+            <p class="why-card-p" data-i18n="w6.p">
+              Distributors, brand partnerships, white-label, co-production —
+              open to all forms. Goal: 5,000 jobs by 2030, key partner to the
+              world's leading brands.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COLLECTIONS -->
+    <section id="collections">
+      <div class="coll-hdr">
+        <div class="fade-up">
+          <div class="sec-label" data-i18n="coll.lbl">Collections</div>
+          <h2 class="sec-title" data-i18n-html="coll.h2">
+            <em>Premium</em><br />Lines &amp; Products
+          </h2>
+        </div>
+        <p class="sec-body fade-up d1" data-i18n="coll.intro">
+          Our suits and winter clothing lines are crafted for demanding markets.
+          Each piece reflects Uzbek artisanship and modern production precision.
+          Click any image to view full size.
+        </p>
+      </div>
+      <div class="car-wrap fade-up">
+        <div class="car-track" id="carTrack">
+          <div class="car-slide" onclick="openLbox(0)">
+            <img src="assets/1.jpg" alt="Vizzano Collection 1" />
+            <div class="slide-cap">
+              <div class="slide-cap-h" data-i18n="s1.h">Premium Suit Line</div>
+              <div class="slide-cap-s" data-i18n="s1.s">
+                Executive &amp; Business Collection
+              </div>
+            </div>
+          </div>
+          <div class="car-slide" onclick="openLbox(1)">
+            <img src="assets/2.jpg" alt="Vizzano Collection 2" />
+            <div class="slide-cap">
+              <div class="slide-cap-h" data-i18n="s2.h">Winter Collection</div>
+              <div class="slide-cap-s" data-i18n="s2.s">
+                Premium Winter Clothing
+              </div>
+            </div>
+          </div>
+          <div class="car-slide" onclick="openLbox(2)">
+            <img src="assets/3.jpg" alt="Vizzano Collection 3" />
+            <div class="slide-cap">
+              <div class="slide-cap-h" data-i18n="s3.h">Seasonal Line</div>
+              <div class="slide-cap-s" data-i18n="s3.s">
+                Bespoke &amp; Tailored Garments
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="car-ctrl">
+          <button class="car-btn" onclick="prevSlide()">
+            <svg
+              width="15"
+              height="15"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <polyline points="15 18 9 12 15 6" />
+            </svg>
+          </button>
+          <button class="car-btn" onclick="nextSlide()">
+            <svg
+              width="15"
+              height="15"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+          </button>
+          <div class="car-dots">
+            <div class="dot active" onclick="goSlide(0)"></div>
+            <div class="dot" onclick="goSlide(1)"></div>
+            <div class="dot" onclick="goSlide(2)"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIGHTBOX -->
+    <div class="lbox" id="lbox" onclick="closeLbox()">
+      <button class="lbox-close" onclick="closeLbox()">✕</button>
+      <img id="lbox-img" src="" alt="Vizzano collection" />
+    </div>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="contact-inner">
+        <div class="fade-up">
+          <div class="sec-label" data-i18n="ct.lbl">Get In Touch</div>
+          <h2 class="sec-title" data-i18n-html="ct.h2">
+            Let's Build<br /><em>Together</em>
+          </h2>
+          <div class="divider"></div>
+          <p class="sec-body" data-i18n="ct.intro">
+            Whether you're a distributor, brand, or retailer — we'd love to
+            explore how Vizzano can become your most reliable manufacturing
+            partner.
+          </p>
+          <br /><br />
+          <div class="c-detail">
+            <svg
+              class="c-ico"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+            >
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 7 7l.8-.8a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+              />
+            </svg>
+            <div>
+              <div class="c-lbl" data-i18n="ct.ph.lbl">Phone</div>
+              <div class="c-val">+998 99 320 12 00<br />+998 33 972 18 82</div>
+            </div>
+          </div>
+          <div class="c-detail">
+            <svg
+              class="c-ico"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+            >
+              <path
+                d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+              />
+              <polyline points="22,6 12,13 2,6" />
+            </svg>
+            <div>
+              <div class="c-lbl" data-i18n="ct.em.lbl">Email</div>
+              <div class="c-val">vizzano.official@gmail.com</div>
+            </div>
+          </div>
+          <div class="c-detail">
+            <svg
+              class="c-ico"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+            >
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+            <div>
+              <div class="c-lbl" data-i18n="ct.loc.lbl">Location</div>
+              <div class="c-val" data-i18n="ct.loc.val">
+                Namangan, Uzbekistan
+              </div>
+            </div>
+          </div>
+        </div>
+        <form class="fade-up d1" id="cForm" onsubmit="handleForm(event)">
+          <div class="f-row">
+            <div class="f-group">
+              <label data-i18n="f.name">Full Name</label
+              ><input
+                type="text"
+                name="name"
+                data-i18n-ph="f.name.ph"
+                placeholder="John Smith"
+                required
+              />
+            </div>
+            <div class="f-group">
+              <label data-i18n="f.co">Company</label
+              ><input
+                type="text"
+                name="company"
+                data-i18n-ph="f.co.ph"
+                placeholder="Company Name"
+                required
+              />
+            </div>
+          </div>
+          <div class="f-group">
+            <label data-i18n="f.em">Email Address</label
+            ><input
+              type="email"
+              name="email"
+              data-i18n-ph="f.em.ph"
+              placeholder="john@company.com"
+              required
+            />
+          </div>
+          <div class="f-group">
+            <label data-i18n="f.msg">Message</label
+            ><textarea
+              name="message"
+              data-i18n-ph="f.msg.ph"
+              placeholder="Tell us about your business and how we can partner..."
+              required
+            ></textarea>
+          </div>
+          <button type="submit" class="sub-btn">
+            <span data-i18n="f.send">Send Message</span> <span>→</span>
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- FIND US -->
+    <section id="findus">
+      <div style="max-width: 1380px; margin: 0 auto; padding: 9rem 3rem">
+        <div class="fade-up">
+          <div class="sec-label" data-i18n="fu.lbl">Find Us</div>
+          <h2 class="sec-title" data-i18n-html="fu.h2">
+            Our <em>Location</em>
+          </h2>
+        </div>
+        <div class="map-wrap fade-up d1">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3009.511609823469!2d71.53117237655562!3d41.03593977134666!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38bb358bd73f9e6f%3A0x2123e2aeae26011c!2sVizzano%20NS!5e0!3m2!1sen!2s!4v1780231316355!5m2!1sen!2s"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Vizzano — Namangan, Uzbekistan"
+          >
+          </iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <span class="f-logo">VIZ<span>ZANO</span></span>
+      <span class="f-copy"
+        >© 2026 Vizzano.uz ·
+        <span data-i18n="ft.rights">All rights reserved</span></span
+      >
+    </footer>
+
+    <script>
+      // ── TRANSLATIONS ──────────────────────────────────────────────
+      const T = {
+        en: {
+          "nav.about": "About",
+          "nav.why": "Why Us",
+          "nav.coll": "Collections",
+          "nav.contact": "Contact",
+          "nav.findus": "Find Us",
+          "hero.tag": "Uzbekistan · Premium Garment Manufacturing",
+          "hero.h1": "Where <em>Craftsmanship</em><br>Meets Partnership",
+          "hero.sub":
+            "Premium suits and winter clothing from Uzbekistan. Built for the world. Backed by 15 years of experience.",
+          "hero.cta": "Explore Partnership",
+          "hero.mute": "Sound Off",
+          "hero.unmute": "Sound On",
+          "about.lbl": "Our Story",
+          "about.h2": "<em>Crafted</em> in Uzbekistan,<br>Built for the World",
+          "about.body":
+            "Vizzano is a premium Uzbek garment manufacturer with over 10 years of import experience and 5 years of export operations. From 3 owned factories in Namangan, our 700+ skilled professionals craft premium suits and winter clothing for the global market. We don't just manufacture — we build lasting partnerships. Every client is treated as a partner: when you profit, we profit.",
+          "about.quote":
+            '"We treat every client as a partner — if you profit, we profit."',
+          "stat.imp": "Years Import Exp.",
+          "stat.exp": "Years Export Exp.",
+          "stat.fac": "Owned Factories",
+          "stat.stf": "Skilled Staff",
+          "why.lbl": "Why Partner With Us",
+          "why.h2": "The Vizzano<br><em>Advantage</em>",
+          "why.intro":
+            "We bring 15 years of combined trade experience, proprietary logistics, and deep market knowledge to every partnership. We are not a supplier — we are your strategic ally in global markets.",
+          "w1.h": "Cost Reduction Guarantee",
+          "w1.p":
+            "We guarantee a reduction in your cost price by at least $3 (300 RUB) per unit. A concrete, measurable advantage for any market.",
+          "w2.h": "Own Logistics Network",
+          "w2.p":
+            "Guaranteed timely delivery worldwide. Our own logistics service — no intermediaries, no delays, full transparency.",
+          "w3.h": "Full Legal Support",
+          "w3.p":
+            "We handle all legal matters on your behalf. Customs, documentation, compliance — fully managed by our in-house legal team so you focus on business.",
+          "w4.h": "Global Market Focus",
+          "w4.p":
+            "The global market is our playground. 10 years of import, 5 years of export — we know the markets, the regulations, and the buyers worldwide.",
+          "w5.h": "Deadline Discipline",
+          "w5.p":
+            "Strictly committed to every deadline. In fashion, timing is revenue — and we treat your sales calendar as our own responsibility.",
+          "w6.h": "Open to All Cooperation",
+          "w6.p":
+            "Distributors, brand partnerships, white-label, co-production — open to all forms. Goal: 5,000 jobs by 2030, key partner to the world's leading brands.",
+          "coll.lbl": "Collections",
+          "coll.h2": "<em>Premium</em><br>Lines &amp; Products",
+          "coll.intro":
+            "Our suits and winter clothing lines are crafted for demanding markets. Each piece reflects Uzbek artisanship and modern production precision. Click any image to view full size.",
+          "s1.h": "Premium Suit Line",
+          "s1.s": "Executive & Business Collection",
+          "s2.h": "Winter Collection",
+          "s2.s": "Premium Winter Clothing",
+          "s3.h": "Seasonal Line",
+          "s3.s": "Bespoke & Tailored Garments",
+          "ct.lbl": "Get In Touch",
+          "ct.h2": "Let's Build<br><em>Together</em>",
+          "ct.intro":
+            "Whether you're a distributor, brand, or retailer — we'd love to explore how Vizzano can become your most reliable manufacturing partner.",
+          "ct.ph.lbl": "Phone",
+          "ct.em.lbl": "Email",
+          "ct.loc.lbl": "Location",
+          "ct.loc.val": "Namangan, Uzbekistan",
+          "f.name": "Full Name",
+          "f.name.ph": "John Smith",
+          "f.co": "Company",
+          "f.co.ph": "Company Name",
+          "f.em": "Email Address",
+          "f.em.ph": "john@company.com",
+          "f.msg": "Message",
+          "f.msg.ph": "Tell us about your business and how we can partner...",
+          "f.send": "Send Message",
+          "fu.lbl": "Find Us",
+          "fu.h2": "Our <em>Location</em>",
+          "ft.rights": "All rights reserved",
+        },
+        ru: {
+          "nav.about": "О нас",
+          "nav.why": "Почему мы",
+          "nav.coll": "Коллекции",
+          "nav.contact": "Контакты",
+          "nav.findus": "Найти нас",
+          "hero.tag": "Узбекистан · Премиальное производство одежды",
+          "hero.h1": "Там, где <em>мастерство</em><br>встречает партнёрство",
+          "hero.sub":
+            "Премиальные костюмы и зимняя одежда из Узбекистана. Создано для мира. 15 лет опыта.",
+          "hero.cta": "Стать партнёром",
+          "hero.mute": "Звук выкл",
+          "hero.unmute": "Звук вкл",
+          "about.lbl": "Наша история",
+          "about.h2": "<em>Создано</em> в Узбекистане,<br>для всего мира",
+          "about.body":
+            "Vizzano — премиальный производитель одежды из Узбекистана с более чем 10-летним опытом импорта и 5-летним опытом экспорта. На 3 собственных фабриках в Намангане более 700 квалифицированных специалистов создают костюмы и зимнюю одежду для мировых рынков. Мы не просто производим — мы строим долгосрочные партнёрства. К каждому клиенту мы относимся как к партнёру: если вы зарабатываете, зарабатываем и мы.",
+          "about.quote":
+            "«Мы относимся к каждому клиенту как к партнёру — если вы в плюсе, мы в плюсе.»",
+          "stat.imp": "Лет опыта импорта",
+          "stat.exp": "Лет опыта экспорта",
+          "stat.fac": "Собственных фабрики",
+          "stat.stf": "Сотрудников",
+          "why.lbl": "Почему работать с нами",
+          "why.h2": "Преимущества<br><em>Vizzano</em>",
+          "why.intro":
+            "Мы привносим 15-летний опыт в области торговли, собственную логистику и глубокое знание рынка в каждое партнёрство. Мы — не просто поставщик, мы ваш стратегический союзник на мировых рынках.",
+          "w1.h": "Гарантия снижения себестоимости",
+          "w1.p":
+            "Мы гарантируем снижение себестоимости минимум на $3 (300 руб.) за единицу. Конкретное, измеримое преимущество для любого рынка.",
+          "w2.h": "Собственная логистика",
+          "w2.p":
+            "Гарантированная своевременная доставка по всему миру. Собственная логистическая служба — без посредников, без задержек, с полной прозрачностью.",
+          "w3.h": "Полное юридическое сопровождение",
+          "w3.p":
+            "Мы берём на себя все юридические вопросы. Таможня, документация, соответствие нормам — полностью ведёт наша штатная юридическая команда.",
+          "w4.h": "Ориентированность на мировой рынок",
+          "w4.p":
+            "Мировой рынок — наша родная территория. 10 лет импорта, 5 лет экспорта — мы знаем рынки, законодательство и покупателей по всему миру.",
+          "w5.h": "Соблюдение сроков",
+          "w5.p":
+            "Строго соблюдаем каждый дедлайн. В индустрии моды время — это выручка, и мы относимся к вашему торговому календарю как к своей ответственности.",
+          "w6.h": "Открыты к любому сотрудничеству",
+          "w6.p":
+            "Дистрибьюторы, партнёрство с брендами, собственная торговая марка, совместное производство — открыты ко всему. Цель: 5 000 рабочих мест к 2030 году.",
+          "coll.lbl": "Коллекции",
+          "coll.h2": "<em>Премиальные</em><br>линейки и продукты",
+          "coll.intro":
+            "Наши линейки костюмов и зимней одежды создаются для требовательных рынков. Каждое изделие отражает узбекское мастерство и точность современного производства. Нажмите на изображение для просмотра.",
+          "s1.h": "Премиальная линейка костюмов",
+          "s1.s": "Деловая и представительская коллекция",
+          "s2.h": "Зимняя коллекция",
+          "s2.s": "Премиальная зимняя одежда",
+          "s3.h": "Сезонная линейка",
+          "s3.s": "Индивидуальный и прецизионный пошив",
+          "ct.lbl": "Связаться с нами",
+          "ct.h2": "Создадим<br><em>будущее вместе</em>",
+          "ct.intro":
+            "Независимо от того, являетесь ли вы дистрибьютором, брендом или ритейлером — мы готовы обсудить, как Vizzano может стать вашим самым надёжным производственным партнёром.",
+          "ct.ph.lbl": "Телефон",
+          "ct.em.lbl": "Эл. почта",
+          "ct.loc.lbl": "Адрес",
+          "ct.loc.val": "Наманган, Узбекистан",
+          "f.name": "Полное имя",
+          "f.name.ph": "Иван Иванов",
+          "f.co": "Компания",
+          "f.co.ph": "Название компании",
+          "f.em": "Электронная почта",
+          "f.em.ph": "ivan@company.com",
+          "f.msg": "Сообщение",
+          "f.msg.ph":
+            "Расскажите о вашем бизнесе и как мы можем сотрудничать...",
+          "f.send": "Отправить сообщение",
+          "fu.lbl": "Найти нас",
+          "fu.h2": "Наше <em>расположение</em>",
+          "ft.rights": "Все права защищены",
+        },
+        uz: {
+          "nav.about": "Biz haqimizda",
+          "nav.why": "Nima uchun biz",
+          "nav.coll": "Kolleksiyalar",
+          "nav.contact": "Aloqa",
+          "nav.findus": "Bizni toping",
+          "hero.tag": "O'zbekiston · Premium kiyim ishlab chiqarish",
+          "hero.h1": "Mahorat <em>hamkorlik</em><br>bilan uchrashadi",
+          "hero.sub":
+            "O'zbekistondan premium kostyumlar va qishki kiyimlar. Dunyo uchun yaratilgan. 15 yillik tajriba bilan.",
+          "hero.cta": "Hamkorlikni ko'ring",
+          "hero.mute": "Ovoz o'chiq",
+          "hero.unmute": "Ovoz yoqiq",
+          "about.lbl": "Bizning hikoyamiz",
+          "about.h2": "O'zbekistonda <em>yaratilgan</em>,<br>dunyo uchun",
+          "about.body":
+            "Vizzano — 10 yildan ortiq import va 5 yillik eksport tajribasiga ega O'zbekiston premium kiyim ishlab chiqaruvchisi. Namangandagi 3 ta o'z zavodimizda 700+ malakali mutaxassis jahon bozori uchun premium kostyumlar va qishki kiyimlar yaratmoqda. Biz nafaqat ishlab chiqaramiz — biz uzoq muddatli hamkorliklar quramiz. Har bir mijozga sherik sifatida yondashiladi: siz foyda olsangiz, biz ham olamiz.",
+          "about.quote":
+            '"Har bir mijozni sherik sifatida ko\'ramiz — siz foyda olsangiz, biz ham olamiz."',
+          "stat.imp": "Yillik import tajribasi",
+          "stat.exp": "Yillik eksport tajribasi",
+          "stat.fac": "O'z zavodlarimiz",
+          "stat.stf": "Malakali xodimlar",
+          "why.lbl": "Nima uchun biz bilan ishlash kerak",
+          "why.h2": "Vizzano<br><em>afzalliklari</em>",
+          "why.intro":
+            "Har bir hamkorlikka 15 yillik savdo tajribasi, o'z logistikamiz va chuqur bozor bilimini olib kelamiz. Biz shunchaki yetkazib beruvchi emas — biz jahon bozorlarida sizning strategik ittifoqchingizmiz.",
+          "w1.h": "Tannarxni kamaytirish kafolati",
+          "w1.p":
+            "Har bir birlik uchun tannarxni kamida $3 (300 rubl)ga kamaytirish kafolatini beramiz. Har qanday bozor uchun aniq, o'lchanadigan ustunlik.",
+          "w2.h": "O'z logistika tarmog'imiz",
+          "w2.p":
+            "Jahon bo'ylab o'z vaqtida kafolatlangan yetkazib berish. O'z logistika xizmatimiz — vositachilar yo'q, kechikishlar yo'q, to'liq shaffoflik.",
+          "w3.h": "To'liq huquqiy yordam",
+          "w3.p":
+            "Barcha huquqiy masalalarni o'z zimmamizga olamiz. Bojxona, hujjatlar, muvofiqlik — shtab ichidagi huquqiy jamoamiz tomonidan to'liq boshqariladi.",
+          "w4.h": "Jahon bozoriga yo'naltirilgan",
+          "w4.p":
+            "Jahon bozori — bizning asosiy hududimiz. 10 yillik import, 5 yillik eksport — biz bozorlarni, qoidalarni va xaridorlarni jahon bo'ylab bilamiz.",
+          "w5.h": "Muddatlarga qat'iy rioya",
+          "w5.p":
+            "Har bir muddatga qat'iy rioya qilamiz. Modada vaqt — bu daromad, va biz sizning savdo taqvimingizga o'z mas'uliyatimiz sifatida yondashamiz.",
+          "w6.h": "Barcha hamkorlik shakllariga ochiq",
+          "w6.p":
+            "Distribyutorlar, brend hamkorliklari, white-label, qo'shma ishlab chiqarish — barcha shakllarga ochiqmiz. Maqsad: 2030 yilga qadar 5 000 ish o'rni.",
+          "coll.lbl": "Kolleksiyalar",
+          "coll.h2": "<em>Premium</em><br>liniyalar va mahsulotlar",
+          "coll.intro":
+            "Bizning kostyum va qishki kiyim liniyalarimiz talabchan bozorlar uchun yaratilgan. Har bir buyum o'zbek hunarmandchiligi va zamonaviy ishlab chiqarish aniqligini aks ettiradi. To'liq ko'rish uchun bosing.",
+          "s1.h": "Premium kostyum liniyasi",
+          "s1.s": "Biznes va rasmiy kolleksiya",
+          "s2.h": "Qishki kolleksiya",
+          "s2.s": "Premium qishki kiyimlar",
+          "s3.h": "Mavsumiy liniya",
+          "s3.s": "Maxsus va tikuv kiyimlar",
+          "ct.lbl": "Biz bilan bog'laning",
+          "ct.h2": "Kelajakni<br><em>birga quramiz</em>",
+          "ct.intro":
+            "Distribyutor, brend yoki chakana sotuvchi bo'lsangiz ham — Vizzano qanday qilib eng ishonchli ishlab chiqarish sherigingizga aylanishini muhokama qilishdan xursandmiz.",
+          "ct.ph.lbl": "Telefon",
+          "ct.em.lbl": "Elektron pochta",
+          "ct.loc.lbl": "Manzil",
+          "ct.loc.val": "Namangan, O'zbekiston",
+          "f.name": "To'liq ism",
+          "f.name.ph": "Ism Familiya",
+          "f.co": "Kompaniya",
+          "f.co.ph": "Kompaniya nomi",
+          "f.em": "Elektron pochta",
+          "f.em.ph": "email@company.com",
+          "f.msg": "Xabar",
+          "f.msg.ph": "Biznesingiz va hamkorlik haqida ma'lumot bering...",
+          "f.send": "Xabar yuborish",
+          "fu.lbl": "Bizni toping",
+          "fu.h2": "Bizning <em>joylashuvimiz</em>",
+          "ft.rights": "Barcha huquqlar himoyalangan",
+        },
+      };
+
+      let lang = "en";
+
+      function setLang(l) {
+        lang = l;
+        const t = T[l];
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          const k = el.getAttribute("data-i18n");
+          if (t[k] !== undefined) el.textContent = t[k];
+        });
+        document.querySelectorAll("[data-i18n-html]").forEach((el) => {
+          const k = el.getAttribute("data-i18n-html");
+          if (t[k] !== undefined) el.innerHTML = t[k];
+        });
+        document.querySelectorAll("[data-i18n-ph]").forEach((el) => {
+          const k = el.getAttribute("data-i18n-ph");
+          if (t[k] !== undefined) el.placeholder = t[k];
+        });
+        ["en", "ru", "uz"].forEach((x) => {
+          document
+            .getElementById("ln-" + x)
+            ?.classList.toggle("active", x === l);
+          document
+            .getElementById("ml-" + x)
+            ?.classList.toggle("active", x === l);
+        });
+        document.documentElement.lang = l;
+        syncMuteLabel();
+      }
+
+      // ── NAV SCROLL ──
+      window.addEventListener("scroll", () => {
+        document
+          .getElementById("nav")
+          .classList.toggle("scrolled", window.scrollY > 50);
+      });
+
+      // ── SMOOTH SCROLL ──
+      function goTo(id) {
+        const el = document.getElementById(id);
+        if (el)
+          window.scrollTo({
+            top: el.getBoundingClientRect().top + window.scrollY - 72,
+            behavior: "smooth",
+          });
+      }
+
+      // ── MOBILE MENU ──
+      function toggleMob() {
+        document.getElementById("mobMenu").classList.toggle("open");
+      }
+
+      // ── MUTE ──
+      let muted = true;
+      function toggleMute() {
+        muted = !muted;
+        document.getElementById("heroVid").muted = muted;
+        syncMuteLabel();
+      }
+      // Unmute automatically on first user interaction (browsers block unmuted autoplay)
+      document.addEventListener(
+        "click",
+        function autoUnmute() {
+          const vid = document.getElementById("heroVid");
+          vid.muted = false;
+          muted = false;
+          syncMuteLabel();
+          document.removeEventListener("click", autoUnmute);
+        },
+        { once: true },
+      );
+      function syncMuteLabel() {
+        const t = T[lang];
+        document.getElementById("ico-sound").style.display = muted
+          ? "block"
+          : "none";
+        document.getElementById("ico-mute").style.display = muted
+          ? "none"
+          : "block";
+        document.getElementById("mute-lbl").textContent = muted
+          ? t["hero.mute"]
+          : t["hero.unmute"];
+      }
+
+      // ── CAROUSEL ──
+      let cur = 0;
+      const slides = document.querySelectorAll(".car-slide");
+      const dots = document.querySelectorAll(".dot");
+      function goSlide(n) {
+        cur = n;
+        document.getElementById("carTrack").style.transform =
+          `translateX(-${n * 100}%)`;
+        dots.forEach((d, i) => d.classList.toggle("active", i === n));
+      }
+      function nextSlide() {
+        goSlide((cur + 1) % slides.length);
+      }
+      function prevSlide() {
+        goSlide((cur - 1 + slides.length) % slides.length);
+      }
+      setInterval(nextSlide, 5000);
+
+      // ── LIGHTBOX ──
+      const imgs = ["assets/1.jpg", "assets/2.jpg", "assets/3.jpg"];
+      function openLbox(i) {
+        document.getElementById("lbox-img").src = imgs[i];
+        document.getElementById("lbox").classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+      function closeLbox() {
+        document.getElementById("lbox").classList.remove("open");
+        document.body.style.overflow = "";
+      }
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeLbox();
+      });
+
+      // ── SCROLL ANIMATIONS ──
+      const obs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) e.target.classList.add("visible");
+          });
+        },
+        { threshold: 0.08, rootMargin: "0px 0px -40px 0px" },
+      );
+      document.querySelectorAll(".fade-up").forEach((el) => obs.observe(el));
+
+      // ── FORM ──
+      function handleForm(e) {
+        e.preventDefault();
+        const btn = e.target.querySelector(".sub-btn span");
+        const orig = btn.textContent;
+        btn.textContent = "✓";
+        e.target.querySelector(".sub-btn").style.background = "#3a7c3a";
+        setTimeout(() => {
+          btn.textContent = orig;
+          e.target.querySelector(".sub-btn").style.background = "";
+          e.target.reset();
+        }, 3000);
+      }
+
+      // init
+      setLang("en");
+    </script>
   </body>
 </html>
