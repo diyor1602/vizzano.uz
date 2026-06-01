@@ -174,7 +174,7 @@
         inset: 0;
         background: rgba(9, 9, 9, 0.97);
         backdrop-filter: blur(20px);
-        z-index: 800;
+        z-index: 1000;
         flex-direction: column;
         align-items: center;
         justify-content: center;
@@ -846,6 +846,81 @@
         color: var(--muted);
       }
 
+      /* ── SUCCESS DIALOG ── */
+      .success-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(9, 9, 9, 0.82);
+        backdrop-filter: blur(12px);
+        z-index: 2000;
+        align-items: center;
+        justify-content: center;
+      }
+      .success-overlay.open {
+        display: flex;
+      }
+      .success-box {
+        background: var(--charcoal);
+        border: 1px solid var(--gold-bd);
+        padding: 3.5rem 4rem;
+        text-align: center;
+        max-width: 460px;
+        width: 90%;
+        animation: boxIn 0.45s var(--ease) both;
+      }
+      @keyframes boxIn {
+        from {
+          opacity: 0;
+          transform: translateY(32px) scale(0.96);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+      .success-icon {
+        width: 56px;
+        height: 56px;
+        border: 1.5px solid var(--gold);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.75rem;
+      }
+      .success-icon svg {
+        stroke: var(--gold);
+      }
+      .success-title {
+        font-family: var(--serif);
+        font-size: 1.9rem;
+        font-weight: 500;
+        color: var(--ivory);
+        margin-bottom: 0.75rem;
+      }
+      .success-body {
+        font-size: 0.88rem;
+        color: var(--silver);
+        line-height: 1.75;
+        margin-bottom: 2.25rem;
+      }
+      .success-close {
+        font-size: 0.7rem;
+        font-weight: 500;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--black);
+        background: var(--gold);
+        border: none;
+        padding: 0.8rem 2.2rem;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+      .success-close:hover {
+        background: var(--ivory);
+      }
+
       /* ── RESPONSIVE ── */
       @media (max-width: 1024px) {
         nav {
@@ -964,9 +1039,6 @@
           <button class="lang-btn" onclick="setLang('ru')" id="ln-ru">
             RU
           </button>
-          <button class="lang-btn" onclick="setLang('uz')" id="ln-uz">
-            UZ
-          </button>
         </div>
       </ul>
       <button class="hamburger" onclick="toggleMob()">
@@ -1020,7 +1092,6 @@
       <div class="mob-lang lang-toggle">
         <button class="lang-btn" onclick="setLang('en')" id="ml-en">EN</button>
         <button class="lang-btn" onclick="setLang('ru')" id="ml-ru">RU</button>
-        <button class="lang-btn" onclick="setLang('uz')" id="ml-uz">UZ</button>
       </div>
     </div>
 
@@ -1341,7 +1412,7 @@
             </svg>
             <div>
               <div class="c-lbl" data-i18n="ct.em.lbl">Email</div>
-              <div class="c-val">vizzano.official@gmail.com</div>
+              <div class="c-val">official@vizzano.uz</div>
             </div>
           </div>
           <div class="c-detail">
@@ -1411,6 +1482,35 @@
         </form>
       </div>
     </section>
+
+    <!-- SUCCESS DIALOG -->
+    <div
+      class="success-overlay"
+      id="successOverlay"
+      onclick="closeSuccess(event)"
+    >
+      <div class="success-box">
+        <div class="success-icon">
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
+        </div>
+        <div class="success-title">Message Sent</div>
+        <p class="success-body">
+          Thank you for reaching out. Our team will review your inquiry and get
+          back to you within 24 hours.
+        </p>
+        <button class="success-close" onclick="closeSuccess()">Close</button>
+      </div>
+    </div>
 
     <!-- FIND US -->
     <section id="findus">
@@ -1598,82 +1698,6 @@
           "fu.h2": "Наше <em>расположение</em>",
           "ft.rights": "Все права защищены",
         },
-        uz: {
-          "nav.about": "Biz haqimizda",
-          "nav.why": "Nima uchun biz",
-          "nav.coll": "Kolleksiyalar",
-          "nav.contact": "Aloqa",
-          "nav.findus": "Bizni toping",
-          "hero.tag": "O'zbekiston · Premium kiyim ishlab chiqarish",
-          "hero.h1": "Mahorat <em>hamkorlik</em><br>bilan uchrashadi",
-          "hero.sub":
-            "O'zbekistondan premium kostyumlar va qishki kiyimlar. Dunyo uchun yaratilgan. 15 yillik tajriba bilan.",
-          "hero.cta": "Hamkorlikni ko'ring",
-          "hero.mute": "Ovoz o'chiq",
-          "hero.unmute": "Ovoz yoqiq",
-          "about.lbl": "Bizning hikoyamiz",
-          "about.h2": "O'zbekistonda <em>yaratilgan</em>,<br>dunyo uchun",
-          "about.body":
-            "Vizzano — 10 yildan ortiq import va 5 yillik eksport tajribasiga ega O'zbekiston premium kiyim ishlab chiqaruvchisi. Namangandagi 3 ta o'z zavodimizda 700+ malakali mutaxassis jahon bozori uchun premium kostyumlar va qishki kiyimlar yaratmoqda. Biz nafaqat ishlab chiqaramiz — biz uzoq muddatli hamkorliklar quramiz. Har bir mijozga sherik sifatida yondashiladi: siz foyda olsangiz, biz ham olamiz.",
-          "about.quote":
-            '"Har bir mijozni sherik sifatida ko\'ramiz — siz foyda olsangiz, biz ham olamiz."',
-          "stat.imp": "Yillik import tajribasi",
-          "stat.exp": "Yillik eksport tajribasi",
-          "stat.fac": "O'z zavodlarimiz",
-          "stat.stf": "Malakali xodimlar",
-          "why.lbl": "Nima uchun biz bilan ishlash kerak",
-          "why.h2": "Vizzano<br><em>afzalliklari</em>",
-          "why.intro":
-            "Har bir hamkorlikka 15 yillik savdo tajribasi, o'z logistikamiz va chuqur bozor bilimini olib kelamiz. Biz shunchaki yetkazib beruvchi emas — biz jahon bozorlarida sizning strategik ittifoqchingizmiz.",
-          "w1.h": "Tannarxni kamaytirish kafolati",
-          "w1.p":
-            "Har bir birlik uchun tannarxni kamida $3 (300 rubl)ga kamaytirish kafolatini beramiz. Har qanday bozor uchun aniq, o'lchanadigan ustunlik.",
-          "w2.h": "O'z logistika tarmog'imiz",
-          "w2.p":
-            "Jahon bo'ylab o'z vaqtida kafolatlangan yetkazib berish. O'z logistika xizmatimiz — vositachilar yo'q, kechikishlar yo'q, to'liq shaffoflik.",
-          "w3.h": "To'liq huquqiy yordam",
-          "w3.p":
-            "Barcha huquqiy masalalarni o'z zimmamizga olamiz. Bojxona, hujjatlar, muvofiqlik — shtab ichidagi huquqiy jamoamiz tomonidan to'liq boshqariladi.",
-          "w4.h": "Jahon bozoriga yo'naltirilgan",
-          "w4.p":
-            "Jahon bozori — bizning asosiy hududimiz. 10 yillik import, 5 yillik eksport — biz bozorlarni, qoidalarni va xaridorlarni jahon bo'ylab bilamiz.",
-          "w5.h": "Muddatlarga qat'iy rioya",
-          "w5.p":
-            "Har bir muddatga qat'iy rioya qilamiz. Modada vaqt — bu daromad, va biz sizning savdo taqvimingizga o'z mas'uliyatimiz sifatida yondashamiz.",
-          "w6.h": "Barcha hamkorlik shakllariga ochiq",
-          "w6.p":
-            "Distribyutorlar, brend hamkorliklari, white-label, qo'shma ishlab chiqarish — barcha shakllarga ochiqmiz. Maqsad: 2030 yilga qadar 5 000 ish o'rni.",
-          "coll.lbl": "Kolleksiyalar",
-          "coll.h2": "<em>Premium</em><br>liniyalar va mahsulotlar",
-          "coll.intro":
-            "Bizning kostyum va qishki kiyim liniyalarimiz talabchan bozorlar uchun yaratilgan. Har bir buyum o'zbek hunarmandchiligi va zamonaviy ishlab chiqarish aniqligini aks ettiradi. To'liq ko'rish uchun bosing.",
-          "s1.h": "Premium kostyum liniyasi",
-          "s1.s": "Biznes va rasmiy kolleksiya",
-          "s2.h": "Qishki kolleksiya",
-          "s2.s": "Premium qishki kiyimlar",
-          "s3.h": "Mavsumiy liniya",
-          "s3.s": "Maxsus va tikuv kiyimlar",
-          "ct.lbl": "Biz bilan bog'laning",
-          "ct.h2": "Kelajakni<br><em>birga quramiz</em>",
-          "ct.intro":
-            "Distribyutor, brend yoki chakana sotuvchi bo'lsangiz ham — Vizzano qanday qilib eng ishonchli ishlab chiqarish sherigingizga aylanishini muhokama qilishdan xursandmiz.",
-          "ct.ph.lbl": "Telefon",
-          "ct.em.lbl": "Elektron pochta",
-          "ct.loc.lbl": "Manzil",
-          "ct.loc.val": "Namangan, O'zbekiston",
-          "f.name": "To'liq ism",
-          "f.name.ph": "Ism Familiya",
-          "f.co": "Kompaniya",
-          "f.co.ph": "Kompaniya nomi",
-          "f.em": "Elektron pochta",
-          "f.em.ph": "email@company.com",
-          "f.msg": "Xabar",
-          "f.msg.ph": "Biznesingiz va hamkorlik haqida ma'lumot bering...",
-          "f.send": "Xabar yuborish",
-          "fu.lbl": "Bizni toping",
-          "fu.h2": "Bizning <em>joylashuvimiz</em>",
-          "ft.rights": "Barcha huquqlar himoyalangan",
-        },
       };
 
       let lang = "en";
@@ -1693,7 +1717,7 @@
           const k = el.getAttribute("data-i18n-ph");
           if (t[k] !== undefined) el.placeholder = t[k];
         });
-        ["en", "ru", "uz"].forEach((x) => {
+        ["en", "ru"].forEach((x) => {
           document
             .getElementById("ln-" + x)
             ?.classList.toggle("active", x === l);
@@ -1734,18 +1758,6 @@
         document.getElementById("heroVid").muted = muted;
         syncMuteLabel();
       }
-      // Unmute automatically on first user interaction (browsers block unmuted autoplay)
-      document.addEventListener(
-        "click",
-        function autoUnmute() {
-          const vid = document.getElementById("heroVid");
-          vid.muted = false;
-          muted = false;
-          syncMuteLabel();
-          document.removeEventListener("click", autoUnmute);
-        },
-        { once: true },
-      );
       function syncMuteLabel() {
         const t = T[lang];
         document.getElementById("ico-sound").style.display = muted
@@ -1806,16 +1818,24 @@
       // ── FORM ──
       function handleForm(e) {
         e.preventDefault();
-        const btn = e.target.querySelector(".sub-btn span");
-        const orig = btn.textContent;
-        btn.textContent = "✓";
-        e.target.querySelector(".sub-btn").style.background = "#3a7c3a";
-        setTimeout(() => {
-          btn.textContent = orig;
-          e.target.querySelector(".sub-btn").style.background = "";
-          e.target.reset();
-        }, 3000);
+        e.target.reset();
+        document.getElementById("successOverlay").classList.add("open");
+        document.body.style.overflow = "hidden";
       }
+      function closeSuccess(e) {
+        if (
+          e &&
+          e.target !== document.getElementById("successOverlay") &&
+          !e.target.classList.contains("success-close")
+        )
+          return;
+        document.getElementById("successOverlay").classList.remove("open");
+        document.body.style.overflow = "";
+      }
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape")
+          closeSuccess({ target: document.getElementById("successOverlay") });
+      });
 
       // init
       setLang("en");
