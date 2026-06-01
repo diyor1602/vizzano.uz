@@ -812,6 +812,23 @@
         background: var(--ivory);
         transform: translateY(-2px);
       }
+      .sub-btn:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+        transform: none;
+      }
+      .sub-btn .btn-spinner {
+        width: 0.85rem;
+        height: 0.85rem;
+        border: 2px solid rgba(0,0,0,0.25);
+        border-top-color: var(--black);
+        border-radius: 50%;
+        animation: spin 0.7s linear infinite;
+        flex-shrink: 0;
+      }
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
 
       /* ── FIND US ── */
       #findus {
@@ -1504,12 +1521,12 @@
             <polyline points="20 6 9 17 4 12" />
           </svg>
         </div>
-        <div class="success-title">Message Sent</div>
-        <p class="success-body">
+        <div class="success-title" data-i18n="dlg.title">Message Sent</div>
+        <p class="success-body" data-i18n="dlg.body">
           Thank you for reaching out. Our team will review your inquiry and get
           back to you within 24 hours.
         </p>
-        <button class="success-close" onclick="closeSuccess()">Close</button>
+        <button class="success-close" onclick="closeSuccess()" data-i18n="dlg.close">Close</button>
       </div>
     </div>
 
@@ -1618,6 +1635,10 @@
           "f.msg": "Message",
           "f.msg.ph": "Tell us about your business and how we can partner...",
           "f.send": "Send Message",
+          "f.sending": "Sending…",
+          "dlg.title": "Message Sent",
+          "dlg.body": "Thank you for reaching out. Our team will review your inquiry and get back to you within 24 hours.",
+          "dlg.close": "Close",
           "fu.lbl": "Find Us",
           "fu.h2": "Our <em>Location</em>",
           "ft.rights": "All rights reserved",
@@ -1695,6 +1716,10 @@
           "f.msg.ph":
             "Расскажите о вашем бизнесе и как мы можем сотрудничать...",
           "f.send": "Отправить сообщение",
+          "f.sending": "Отправка…",
+          "dlg.title": "Сообщение отправлено",
+          "dlg.body": "Спасибо за обращение. Наша команда рассмотрит ваш запрос и свяжется с вами в течение 24 часов.",
+          "dlg.close": "Закрыть",
           "fu.lbl": "Найти нас",
           "fu.h2": "Наше <em>расположение</em>",
           "ft.rights": "Все права защищены",
@@ -1817,11 +1842,39 @@
       document.querySelectorAll(".fade-up").forEach((el) => obs.observe(el));
 
       // ── FORM ──
-      function handleForm(e) {
+      async function handleForm(e) {
         e.preventDefault();
-        e.target.reset();
-        document.getElementById("successOverlay").classList.add("open");
-        document.body.style.overflow = "hidden";
+        const form = e.target;
+        const btn = form.querySelector(".sub-btn");
+        const data = new FormData(form);
+
+        const originalHTML = btn.innerHTML;
+        btn.disabled = true;
+        btn.innerHTML = `<span class="btn-spinner"></span><span>${T[lang]["f.sending"]}</span>`;
+
+        try {
+          const res = await fetch("https://api.vizzano-apparel.uz/api/contact-us", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              email: data.get("email"),
+              full_name: data.get("name"),
+              company_name: data.get("company"),
+              message: data.get("message"),
+            }),
+          });
+
+          if (!res.ok) throw new Error("Request failed");
+
+          form.reset();
+          document.getElementById("successOverlay").classList.add("open");
+          document.body.style.overflow = "hidden";
+        } catch {
+          alert("Something went wrong. Please try again.");
+        } finally {
+          btn.disabled = false;
+          btn.innerHTML = originalHTML;
+        }
       }
       function closeSuccess(e) {
         if (
