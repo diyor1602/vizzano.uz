@@ -98,18 +98,10 @@
         border-bottom: 1px solid var(--border);
       }
       .nav-logo {
-        font-family: var(--serif);
-        font-size: 1.55rem;
-        font-weight: 600;
-        letter-spacing: 0.22em;
-        text-transform: uppercase;
-        color: var(--ivory);
-        text-decoration: none;
+        height: 2.2rem;
+        width: auto;
         cursor: pointer;
         flex-shrink: 0;
-      }
-      .nav-logo span {
-        color: var(--gold);
       }
       .nav-links {
         display: flex;
@@ -502,6 +494,11 @@
         max-width: 1380px;
         margin: 0 auto;
       }
+      .why-logo {
+        height: 3.5rem;
+        width: auto;
+        margin-bottom: 0.5rem;
+      }
       .why-hdr {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -841,15 +838,8 @@
         justify-content: space-between;
       }
       .f-logo {
-        font-family: var(--serif);
-        font-size: 1.2rem;
-        font-weight: 600;
-        letter-spacing: 0.22em;
-        text-transform: uppercase;
-        color: var(--ivory);
-      }
-      .f-logo span {
-        color: var(--gold);
+        height: 1.8rem;
+        width: auto;
       }
       .f-copy {
         font-size: 0.72rem;
@@ -951,7 +941,12 @@
   <body>
     <!-- NAV -->
     <nav id="nav">
-      <span class="nav-logo" onclick="goTo('hero')">VIZ<span>ZANO</span></span>
+      <img
+        class="nav-logo"
+        src="assets/logo.png"
+        alt="Vizzano"
+        onclick="goTo('hero')"
+      />
       <ul class="nav-links">
         <li><a onclick="goTo('about')" data-i18n="nav.about">About</a></li>
         <li><a onclick="goTo('why')" data-i18n="nav.why">Why Us</a></li>
@@ -1147,9 +1142,7 @@
         <div class="why-hdr">
           <div class="fade-up">
             <div class="sec-label" data-i18n="why.lbl">Why Partner With Us</div>
-            <h2 class="sec-title" data-i18n-html="why.h2">
-              The Vizzano<br /><em>Advantage</em>
-            </h2>
+            <img class="why-logo" src="assets/logo.png" alt="Vizzano" />
           </div>
           <p class="sec-body fade-up d1" data-i18n="why.intro">
             We bring 15 years of combined trade experience, proprietary
@@ -1430,7 +1423,7 @@
         </div>
         <div class="map-wrap fade-up d1">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3009.511609823469!2d71.53117237655562!3d41.03593977134666!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38bb358bd73f9e6f%3A0x2123e2aeae26011c!2sVizzano%20NS!5e0!3m2!1sen!2s!4v1780231316355!5m2!1sen!2s"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1156.0417659986908!2d71.6403579130369!3d41.01282926303511!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38bb4b0eccf0455d%3A0xd9fc82d2acb2c3f4!2s%C2%ABSAODAT%20SANOAT%20SERVIS%C2%BB%20LLC%2C%20Vizzano%20uz!5e0!3m2!1sen!2s!4v1780281267626!5m2!1sen!2s"
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
             title="Vizzano — Namangan, Uzbekistan"
@@ -1442,7 +1435,7 @@
 
     <!-- FOOTER -->
     <footer>
-      <span class="f-logo">VIZ<span>ZANO</span></span>
+      <img class="f-logo" src="assets/logo.png" alt="Vizzano" />
       <span class="f-copy"
         >© 2026 Vizzano.uz ·
         <span data-i18n="ft.rights">All rights reserved</span></span
@@ -1468,7 +1461,7 @@
           "about.lbl": "Our Story",
           "about.h2": "<em>Crafted</em> in Uzbekistan,<br>Built for the World",
           "about.body":
-            "Vizzano is a premium Uzbek garment manufacturer with over 10 years of import experience and 5 years of export operations. From 3 owned factories in Namangan, our 700+ skilled professionals craft premium suits and winter clothing for the global market. We don't just manufacture — we build lasting partnerships. Every client is treated as a partner: when you profit, we profit.",
+            "We are premium Uzbek garment manufacturer with over 10 years of import experience and 5 years of export operations. From 3 owned factories in Namangan, our 700+ skilled professionals craft premium suits and winter clothing for the global market. We don't just manufacture — we build lasting partnerships. Every client is treated as a partner: when you profit, we profit.",
           "about.quote":
             '"We treat every client as a partner — if you profit, we profit."',
           "stat.imp": "Years Import Exp.",
@@ -1510,7 +1503,7 @@
           "ct.lbl": "Get In Touch",
           "ct.h2": "Let's Build<br><em>Together</em>",
           "ct.intro":
-            "Whether you're a distributor, brand, or retailer — we'd love to explore how Vizzano can become your most reliable manufacturing partner.",
+            "Whether you're a distributor, brand, or retailer — we'd love to explore how we can become your most reliable manufacturing partner.",
           "ct.ph.lbl": "Phone",
           "ct.em.lbl": "Email",
           "ct.loc.lbl": "Location",
@@ -1544,7 +1537,7 @@
           "about.lbl": "Наша история",
           "about.h2": "<em>Создано</em> в Узбекистане,<br>для всего мира",
           "about.body":
-            "Vizzano — премиальный производитель одежды из Узбекистана с более чем 10-летним опытом импорта и 5-летним опытом экспорта. На 3 собственных фабриках в Намангане более 700 квалифицированных специалистов создают костюмы и зимнюю одежду для мировых рынков. Мы не просто производим — мы строим долгосрочные партнёрства. К каждому клиенту мы относимся как к партнёру: если вы зарабатываете, зарабатываем и мы.",
+            "Мы — премиальный производитель одежды из Узбекистана с более чем 10-летним опытом импорта и 5-летним опытом экспорта. На 3 собственных фабриках в Намангане более 700 квалифицированных специалистов создают костюмы и зимнюю одежду для мировых рынков. Мы не просто производим — мы строим долгосрочные партнёрства. К каждому клиенту мы относимся как к партнёру: если вы зарабатываете, зарабатываем и мы.",
           "about.quote":
             "«Мы относимся к каждому клиенту как к партнёру — если вы в плюсе, мы в плюсе.»",
           "stat.imp": "Лет опыта импорта",
@@ -1586,7 +1579,7 @@
           "ct.lbl": "Связаться с нами",
           "ct.h2": "Создадим<br><em>будущее вместе</em>",
           "ct.intro":
-            "Независимо от того, являетесь ли вы дистрибьютором, брендом или ритейлером — мы готовы обсудить, как Vizzano может стать вашим самым надёжным производственным партнёром.",
+            "Независимо от того, являетесь ли вы дистрибьютором, брендом или ритейлером — мы готовы обсудить, как мы может стать вашим самым надёжным производственным партнёром.",
           "ct.ph.lbl": "Телефон",
           "ct.em.lbl": "Эл. почта",
           "ct.loc.lbl": "Адрес",
