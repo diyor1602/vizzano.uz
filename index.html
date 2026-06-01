@@ -1537,7 +1537,7 @@
     <footer>
       <img class="f-logo" src="assets/logo.png" alt="Vizzano" />
       <span class="f-copy"
-        >© 2026 Vizzano.uz ·
+        >© <span id="copy-year"></span> Vizzano.uz ·
         <span data-i18n="ft.rights">All rights reserved</span></span
       >
     </footer>
@@ -1838,6 +1838,7 @@
       });
 
       // init
+      document.getElementById("copy-year").textContent = new Date().getFullYear();
       setLang("en");
     </script>
   </body>
