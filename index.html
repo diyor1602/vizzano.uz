@@ -1974,7 +1974,8 @@
           }
 
           // Collections carousel + gallery: all images
-          buildCarousel(active);
+          const picked = active.slice().sort(() => Math.random() - 0.5).slice(0, 7);
+          buildCarousel(picked);
         })
         .catch(() => {});
     </script>
