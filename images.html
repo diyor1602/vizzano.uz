@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Collections — Vizzano</title>
+    <meta
+      name="description"
+      content="Full photo gallery of Vizzano premium garment collections."
+    />
+    <link rel="icon" href="assets/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      :root {
+        --black: #090909;
+        --charcoal: #141414;
+        --border: #2a2a2a;
+        --silver: #888;
+        --light: #bbb;
+        --ivory: #f2ede4;
+        --gold: #c8943a;
+        --gold-lt: rgba(200, 148, 58, 0.12);
+        --serif: "Cormorant Garamond", Georgia, serif;
+        --sans: "Inter", system-ui, sans-serif;
+        --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background: var(--black);
+        color: var(--ivory);
+        font-family: var(--sans);
+        font-weight: 300;
+        line-height: 1.7;
+        min-height: 100vh;
+      }
+      ::-webkit-scrollbar {
+        width: 3px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--black);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--gold);
+        border-radius: 2px;
+      }
+
+      /* NAV */
+      nav {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        padding: 1.25rem 3rem;
+        background: rgba(9, 9, 9, 0.93);
+        backdrop-filter: blur(18px);
+        border-bottom: 1px solid var(--border);
+      }
+      .nav-logo {
+        height: 2.2rem;
+        width: auto;
+      }
+      .nav-back {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.72rem;
+        font-weight: 500;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--light);
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+      .nav-back:hover {
+        color: var(--gold);
+      }
+      .nav-back svg {
+        flex-shrink: 0;
+      }
+      .nav-title {
+        font-family: var(--serif);
+        font-size: 1.05rem;
+        color: var(--ivory);
+        letter-spacing: 0.04em;
+      }
+      .nav-title {
+        margin-left: auto;
+      }
+
+      /* PAGE HERO */
+      .page-hero {
+        padding: 5rem 3rem 3rem;
+        max-width: 1380px;
+        margin: 0 auto;
+      }
+      .sec-label {
+        font-size: 0.68rem;
+        font-weight: 500;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 0.75rem;
+      }
+      .page-title {
+        font-family: var(--serif);
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 300;
+        line-height: 1.1;
+        color: var(--ivory);
+      }
+      .page-title em {
+        font-style: italic;
+        color: var(--gold);
+      }
+      .divider {
+        width: 3rem;
+        height: 1px;
+        background: var(--gold);
+        margin: 1.5rem 0;
+      }
+      .photo-count {
+        font-size: 0.8rem;
+        color: var(--silver);
+        letter-spacing: 0.08em;
+      }
+
+      /* GRID */
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1rem;
+        padding: 0 3rem 6rem;
+        max-width: 1380px;
+        margin: 0 auto;
+      }
+      .gallery-item {
+        aspect-ratio: 3/4;
+        overflow: hidden;
+        cursor: pointer;
+        background: var(--charcoal);
+        position: relative;
+      }
+      .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.6s var(--ease);
+      }
+      .gallery-item:hover img {
+        transform: scale(1.05);
+      }
+      .gallery-item .item-num {
+        position: absolute;
+        bottom: 0.9rem;
+        right: 1rem;
+        font-size: 0.65rem;
+        color: rgba(242, 237, 228, 0.5);
+        letter-spacing: 0.1em;
+        pointer-events: none;
+      }
+
+      /* SKELETON */
+      .skeleton {
+        aspect-ratio: 3/4;
+        background: var(--charcoal);
+        position: relative;
+        overflow: hidden;
+      }
+      .skeleton::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          90deg,
+          transparent 0%,
+          rgba(255, 255, 255, 0.04) 50%,
+          transparent 100%
+        );
+        animation: shimmer 1.4s infinite;
+      }
+      @keyframes shimmer {
+        from {
+          transform: translateX(-100%);
+        }
+        to {
+          transform: translateX(100%);
+        }
+      }
+
+      /* LIGHTBOX */
+      .lbox {
+        position: fixed;
+        inset: 0;
+        background: rgba(9, 9, 9, 0.97);
+        z-index: 2000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.35s;
+      }
+      .lbox.open {
+        opacity: 1;
+        pointer-events: all;
+      }
+      .lbox img {
+        max-width: 90vw;
+        max-height: 88vh;
+        object-fit: contain;
+        user-select: none;
+      }
+      .lbox-close {
+        position: absolute;
+        top: 1.75rem;
+        right: 2rem;
+        background: none;
+        border: none;
+        color: var(--ivory);
+        font-size: 1.6rem;
+        cursor: pointer;
+        transition: color 0.3s;
+        line-height: 1;
+      }
+      .lbox-close:hover {
+        color: var(--gold);
+      }
+      .lbox-prev,
+      .lbox-next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: 1px solid var(--border);
+        color: var(--ivory);
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+      .lbox-prev {
+        left: 2rem;
+      }
+      .lbox-next {
+        right: 2rem;
+      }
+      .lbox-prev:hover,
+      .lbox-next:hover {
+        border-color: var(--gold);
+        color: var(--gold);
+      }
+      .lbox-counter {
+        position: absolute;
+        bottom: 1.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 0.72rem;
+        letter-spacing: 0.15em;
+        color: var(--silver);
+      }
+
+      /* EMPTY */
+      .empty {
+        grid-column: 1/-1;
+        text-align: center;
+        padding: 6rem 0;
+        color: var(--silver);
+        font-size: 0.9rem;
+        letter-spacing: 0.1em;
+      }
+
+      @media (max-width: 768px) {
+        nav {
+          padding: 1rem 1.5rem;
+        }
+        .page-hero {
+          padding: 3rem 1.5rem 2rem;
+        }
+        .gallery-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 0.5rem;
+          padding: 0 1.5rem 4rem;
+        }
+        .lbox-prev {
+          left: 0.75rem;
+        }
+        .lbox-next {
+          right: 0.75rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="/" class="nav-back">
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <polyline points="15 18 9 12 15 6" />
+        </svg>
+        <span data-i18n="back">Back</span>
+      </a>
+      <a href="/" style="margin-left: auto; display: inline-flex;">
+        <img src="assets/logo.png" alt="Vizzano" class="nav-logo" />
+      </a>
+    </nav>
+
+    <div class="page-hero">
+      <div class="sec-label" data-i18n="label">Collections</div>
+      <h1 class="page-title">
+        <em data-i18n="title-em">All</em>
+        <span data-i18n="title-rest">Photos</span>
+      </h1>
+      <div class="divider"></div>
+      <div class="photo-count" id="photoCount" data-i18n="loading">
+        Loading…
+      </div>
+    </div>
+
+    <div class="gallery-grid" id="galleryGrid">
+      <div class="skeleton"></div>
+      <div class="skeleton"></div>
+      <div class="skeleton"></div>
+      <div class="skeleton"></div>
+      <div class="skeleton"></div>
+      <div class="skeleton"></div>
+    </div>
+
+    <!-- LIGHTBOX -->
+    <div class="lbox" id="lbox">
+      <button class="lbox-close" onclick="closeLbox()">✕</button>
+      <button class="lbox-prev" onclick="shiftLbox(-1)">
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <polyline points="15 18 9 12 15 6" />
+        </svg>
+      </button>
+      <img id="lbox-img" src="" alt="Vizzano collection" />
+      <button class="lbox-next" onclick="shiftLbox(1)">
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <polyline points="9 18 15 12 9 6" />
+        </svg>
+      </button>
+      <div class="lbox-counter" id="lboxCounter"></div>
+    </div>
+
+    <script>
+      const T = {
+        en: {
+          back: "Back",
+          title: "Collections",
+          label: "Collections",
+          "title-em": "All",
+          "title-rest": "Photos",
+          loading: "Loading…",
+          empty: "No photos available.",
+          error: "Failed to load photos. Please try again later.",
+          photos: (n) => `${n} photo${n === 1 ? "" : "s"}`,
+        },
+        ru: {
+          back: "Назад",
+          title: "Коллекции",
+          label: "Коллекции",
+          "title-em": "Все",
+          "title-rest": "Фото",
+          loading: "Загрузка…",
+          empty: "Фотографии недоступны.",
+          error: "Не удалось загрузить фото. Попробуйте позже.",
+          photos: (n) => `${n} фото`,
+        },
+      };
+
+      let lang = localStorage.getItem("lang") || "en";
+
+      function setLang(l) {
+        lang = l;
+        localStorage.setItem("lang", l);
+        const t = T[l];
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          const k = el.getAttribute("data-i18n");
+          if (typeof t[k] === "string") el.textContent = t[k];
+        });
+        document.documentElement.lang = l;
+      }
+
+      // ── LIGHTBOX ──
+      let photos = [];
+      let lboxIdx = 0;
+
+      function openLbox(i) {
+        lboxIdx = i;
+        document.getElementById("lbox-img").src = photos[i].file;
+        document.getElementById("lboxCounter").textContent =
+          `${i + 1} / ${photos.length}`;
+        document.getElementById("lbox").classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+      function closeLbox() {
+        document.getElementById("lbox").classList.remove("open");
+        document.body.style.overflow = "";
+      }
+      function shiftLbox(dir) {
+        openLbox((lboxIdx + dir + photos.length) % photos.length);
+      }
+
+      document.getElementById("lbox").addEventListener("click", (e) => {
+        if (e.target === e.currentTarget) closeLbox();
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeLbox();
+        if (e.key === "ArrowRight") shiftLbox(1);
+        if (e.key === "ArrowLeft") shiftLbox(-1);
+      });
+
+      // ── FETCH ──
+      fetch("https://api.vizzano-apparel.uz/api/abouts")
+        .then((r) => r.json())
+        .then((data) => {
+          photos = data.filter((p) => p.status);
+          const grid = document.getElementById("galleryGrid");
+          const countEl = document.getElementById("photoCount");
+
+          grid.innerHTML = "";
+
+          if (!photos.length) {
+            grid.innerHTML = `<div class="empty">${T[lang].empty}</div>`;
+            countEl.removeAttribute("data-i18n");
+            countEl.textContent = T[lang].photos(0);
+            return;
+          }
+
+          countEl.removeAttribute("data-i18n");
+          countEl.textContent = T[lang].photos(photos.length);
+
+          photos.forEach((p, i) => {
+            const item = document.createElement("div");
+            item.className = "gallery-item";
+            item.onclick = () => openLbox(i);
+            item.innerHTML = `
+              <img src="${p.file}" alt="Vizzano ${i + 1}" loading="lazy" />
+              <div class="item-num">${String(i + 1).padStart(2, "0")}</div>
+            `;
+            grid.appendChild(item);
+          });
+        })
+        .catch(() => {
+          const grid = document.getElementById("galleryGrid");
+          grid.innerHTML = `<div class="empty">${T[lang].error}</div>`;
+          document.getElementById("photoCount").textContent = "";
+        });
+
+      // init language (after T and setLang are defined)
+      setLang(lang);
+    </script>
+  </body>
+</html>

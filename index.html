@@ -703,6 +703,29 @@
         color: var(--gold);
       }
 
+      /* ── GALLERY OVERLAY ── */
+      .view-all-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-family: var(--sans);
+        font-size: 0.72rem;
+        font-weight: 500;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--gold);
+        background: none;
+        border: 1px solid var(--gold);
+        padding: 0.75rem 1.8rem;
+        cursor: pointer;
+        transition: all 0.3s var(--ease);
+        margin-top: 1.5rem;
+      }
+      .view-all-btn:hover {
+        background: var(--gold);
+        color: var(--black);
+      }
+
       /* ── CONTACT ── */
       #contact {
         background: var(--charcoal);
@@ -820,14 +843,16 @@
       .sub-btn .btn-spinner {
         width: 0.85rem;
         height: 0.85rem;
-        border: 2px solid rgba(0,0,0,0.25);
+        border: 2px solid rgba(0, 0, 0, 0.25);
         border-top-color: var(--black);
         border-radius: 50%;
         animation: spin 0.7s linear infinite;
         flex-shrink: 0;
       }
       @keyframes spin {
-        to { transform: rotate(360deg); }
+        to {
+          transform: rotate(360deg);
+        }
       }
 
       /* ── FIND US ── */
@@ -1307,42 +1332,22 @@
             <em>Premium</em><br />Lines &amp; Products
           </h2>
         </div>
-        <p class="sec-body fade-up d1" data-i18n="coll.intro">
-          Our suits and winter clothing lines are crafted for demanding markets.
-          Each piece reflects Uzbek artisanship and modern production precision.
-          Click any image to view full size.
-        </p>
+        <div>
+          <p class="sec-body fade-up d1" data-i18n="coll.intro">
+            Our suits and winter clothing lines are crafted for demanding
+            markets. Each piece reflects Uzbek artisanship and modern production
+            precision. Click any image to view full size.
+          </p>
+          <a
+            class="view-all-btn fade-up d2"
+            href="/images.html"
+            data-i18n="coll.viewall"
+            >View All Photos</a
+          >
+        </div>
       </div>
       <div class="car-wrap fade-up">
-        <div class="car-track" id="carTrack">
-          <div class="car-slide" onclick="openLbox(0)">
-            <img src="assets/1.jpg" alt="Vizzano Collection 1" />
-            <div class="slide-cap">
-              <div class="slide-cap-h" data-i18n="s1.h">Premium Suit Line</div>
-              <div class="slide-cap-s" data-i18n="s1.s">
-                Executive &amp; Business Collection
-              </div>
-            </div>
-          </div>
-          <div class="car-slide" onclick="openLbox(1)">
-            <img src="assets/2.jpg" alt="Vizzano Collection 2" />
-            <div class="slide-cap">
-              <div class="slide-cap-h" data-i18n="s2.h">Winter Collection</div>
-              <div class="slide-cap-s" data-i18n="s2.s">
-                Premium Winter Clothing
-              </div>
-            </div>
-          </div>
-          <div class="car-slide" onclick="openLbox(2)">
-            <img src="assets/3.jpg" alt="Vizzano Collection 3" />
-            <div class="slide-cap">
-              <div class="slide-cap-h" data-i18n="s3.h">Seasonal Line</div>
-              <div class="slide-cap-s" data-i18n="s3.s">
-                Bespoke &amp; Tailored Garments
-              </div>
-            </div>
-          </div>
-        </div>
+        <div class="car-track" id="carTrack"></div>
         <div class="car-ctrl">
           <button class="car-btn" onclick="prevSlide()">
             <svg
@@ -1356,7 +1361,7 @@
               <polyline points="15 18 9 12 15 6" />
             </svg>
           </button>
-          <button class="car-btn" onclick="nextSlide()">
+          <button class="car-btn" onclick="nextSlide(true)">
             <svg
               width="15"
               height="15"
@@ -1368,11 +1373,7 @@
               <polyline points="9 18 15 12 9 6" />
             </svg>
           </button>
-          <div class="car-dots">
-            <div class="dot active" onclick="goSlide(0)"></div>
-            <div class="dot" onclick="goSlide(1)"></div>
-            <div class="dot" onclick="goSlide(2)"></div>
-          </div>
+          <div class="car-dots" id="carDots"></div>
         </div>
       </div>
     </section>
@@ -1526,7 +1527,13 @@
           Thank you for reaching out. Our team will review your inquiry and get
           back to you within 24 hours.
         </p>
-        <button class="success-close" onclick="closeSuccess()" data-i18n="dlg.close">Close</button>
+        <button
+          class="success-close"
+          onclick="closeSuccess()"
+          data-i18n="dlg.close"
+        >
+          Close
+        </button>
       </div>
     </div>
 
@@ -1544,7 +1551,7 @@
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1156.0417659986908!2d71.6403579130369!3d41.01282926303511!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38bb4b0eccf0455d%3A0xd9fc82d2acb2c3f4!2s%C2%ABSAODAT%20SANOAT%20SERVIS%C2%BB%20LLC%2C%20Vizzano%20uz!5e0!3m2!1sen!2s!4v1780281267626!5m2!1sen!2s"
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
-            title="Vizzano — Namangan, Uzbekistan"
+            title="Namangan, Uzbekistan"
           >
           </iframe>
         </div>
@@ -1634,10 +1641,12 @@
           "f.em.ph": "john@company.com",
           "f.msg": "Message",
           "f.msg.ph": "Tell us about your business and how we can partner...",
+          "coll.viewall": "View All Photos",
           "f.send": "Send Message",
           "f.sending": "Sending…",
           "dlg.title": "Message Sent",
-          "dlg.body": "Thank you for reaching out. Our team will review your inquiry and get back to you within 24 hours.",
+          "dlg.body":
+            "Thank you for reaching out. Our team will review your inquiry and get back to you within 24 hours.",
           "dlg.close": "Close",
           "fu.lbl": "Find Us",
           "fu.h2": "Our <em>Location</em>",
@@ -1715,10 +1724,12 @@
           "f.msg": "Сообщение",
           "f.msg.ph":
             "Расскажите о вашем бизнесе и как мы можем сотрудничать...",
+          "coll.viewall": "Все фото",
           "f.send": "Отправить сообщение",
           "f.sending": "Отправка…",
           "dlg.title": "Сообщение отправлено",
-          "dlg.body": "Спасибо за обращение. Наша команда рассмотрит ваш запрос и свяжется с вами в течение 24 часов.",
+          "dlg.body":
+            "Спасибо за обращение. Наша команда рассмотрит ваш запрос и свяжется с вами в течение 24 часов.",
           "dlg.close": "Закрыть",
           "fu.lbl": "Найти нас",
           "fu.h2": "Наше <em>расположение</em>",
@@ -1730,6 +1741,7 @@
 
       function setLang(l) {
         lang = l;
+        localStorage.setItem("lang", l);
         const t = T[l];
         document.querySelectorAll("[data-i18n]").forEach((el) => {
           const k = el.getAttribute("data-i18n");
@@ -1799,26 +1811,58 @@
 
       // ── CAROUSEL ──
       let cur = 0;
-      const slides = document.querySelectorAll(".car-slide");
-      const dots = document.querySelectorAll(".dot");
-      function goSlide(n) {
-        cur = n;
-        document.getElementById("carTrack").style.transform =
-          `translateX(-${n * 100}%)`;
-        dots.forEach((d, i) => d.classList.toggle("active", i === n));
+      let carImgs = [];
+      let autoTimer = null;
+
+      function buildCarousel(photos) {
+        carImgs = photos.map((p) => p.file);
+        const track = document.getElementById("carTrack");
+        const dotsEl = document.getElementById("carDots");
+        track.innerHTML = "";
+        dotsEl.innerHTML = "";
+        photos.forEach((p, i) => {
+          const slide = document.createElement("div");
+          slide.className = "car-slide";
+          slide.onclick = () => openLbox(i);
+          slide.innerHTML = `<img src="${p.file}" alt="Vizzano Collection ${i + 1}" loading="lazy">`;
+          track.appendChild(slide);
+          const dot = document.createElement("div");
+          dot.className = "dot" + (i === 0 ? " active" : "");
+          dot.onclick = () => {
+            goSlide(i);
+            resetTimer();
+          };
+          dotsEl.appendChild(dot);
+        });
+        cur = 0;
+        if (autoTimer) clearInterval(autoTimer);
+        autoTimer = setInterval(nextSlide, 5000);
       }
-      function nextSlide() {
-        goSlide((cur + 1) % slides.length);
+
+      function resetTimer() {
+        clearInterval(autoTimer);
+        autoTimer = setInterval(nextSlide, 5000);
+      }
+      function goSlide(n) {
+        const slides = document.querySelectorAll(".car-slide");
+        const dots = document.querySelectorAll(".dot");
+        cur = (n + slides.length) % slides.length;
+        document.getElementById("carTrack").style.transform =
+          `translateX(-${cur * 100}%)`;
+        dots.forEach((d, i) => d.classList.toggle("active", i === cur));
+      }
+      function nextSlide(manual) {
+        goSlide(cur + 1);
+        if (manual) resetTimer();
       }
       function prevSlide() {
-        goSlide((cur - 1 + slides.length) % slides.length);
+        goSlide(cur - 1);
+        resetTimer();
       }
-      setInterval(nextSlide, 5000);
 
       // ── LIGHTBOX ──
-      const imgs = ["assets/1.jpg", "assets/2.jpg", "assets/3.jpg"];
       function openLbox(i) {
-        document.getElementById("lbox-img").src = imgs[i];
+        document.getElementById("lbox-img").src = carImgs[i] || "";
         document.getElementById("lbox").classList.add("open");
         document.body.style.overflow = "hidden";
       }
@@ -1826,6 +1870,7 @@
         document.getElementById("lbox").classList.remove("open");
         document.body.style.overflow = "";
       }
+
       document.addEventListener("keydown", (e) => {
         if (e.key === "Escape") closeLbox();
       });
@@ -1853,16 +1898,19 @@
         btn.innerHTML = `<span class="btn-spinner"></span><span>${T[lang]["f.sending"]}</span>`;
 
         try {
-          const res = await fetch("https://api.vizzano-apparel.uz/api/contact-us", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              email: data.get("email"),
-              full_name: data.get("name"),
-              company_name: data.get("company"),
-              message: data.get("message"),
-            }),
-          });
+          const res = await fetch(
+            "https://api.vizzano-apparel.uz/api/contact-us",
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                email: data.get("email"),
+                full_name: data.get("name"),
+                company_name: data.get("company"),
+                message: data.get("message"),
+              }),
+            },
+          );
 
           if (!res.ok) throw new Error("Request failed");
 
@@ -1894,7 +1942,41 @@
       // init
       document.getElementById("copy-year").textContent =
         new Date().getFullYear();
-      setLang("en");
+      setLang(localStorage.getItem("lang") || "en");
+
+      fetch("https://api.vizzano-apparel.uz/api/backgrounds")
+        .then((r) => r.json())
+        .then((data) => {
+          if (!data.file || !data.status) return;
+          const vid = document.getElementById("heroVid");
+          vid.querySelector("source").src = data.file;
+          vid.load();
+        })
+        .catch(() => {});
+
+      fetch("https://api.vizzano-apparel.uz/api/abouts")
+        .then((r) => r.json())
+        .then((photos) => {
+          const active = photos.filter((p) => p.status);
+          if (!active.length) return;
+
+          // About section: 2 random images
+          const shuffled = active.slice().sort(() => Math.random() - 0.5);
+          const mainImg = document.querySelector(".img-main");
+          const accentImg = document.querySelector(".img-accent");
+          if (mainImg) {
+            mainImg.src = shuffled[0].file;
+            mainImg.loading = "lazy";
+          }
+          if (accentImg && shuffled[1]) {
+            accentImg.src = shuffled[1].file;
+            accentImg.loading = "lazy";
+          }
+
+          // Collections carousel + gallery: all images
+          buildCarousel(active);
+        })
+        .catch(() => {});
     </script>
   </body>
 </html>
